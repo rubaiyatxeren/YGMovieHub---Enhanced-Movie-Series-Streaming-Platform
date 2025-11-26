@@ -1,0 +1,169 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 5px;
+  border: 2px solid #1f2937;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+/* Modal-specific scrollbar - narrower */
+#movieModal .modal-overlay + div > div {
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #1f2937;
+}
+
+#movieModal .modal-overlay + div > div::-webkit-scrollbar {
+  width: 6px;
+}
+
+#movieModal .modal-overlay + div > div::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 3px;
+}
+
+#movieModal .modal-overlay + div > div::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 3px;
+  border: 1px solid #1f2937;
+}
+
+#movieModal .modal-overlay + div > div::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+/* Firefox Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #667eea #1f2937;
+}
+
+/* Enhanced Movie Card Styles */
+.movie-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+.movie-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Better image sizing */
+.movie-card img {
+  transition: transform 0.3s ease;
+  height: 280px; /* Increased height */
+  object-fit: cover;
+}
+
+.movie-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Enhanced card content */
+.movie-card .p-3 {
+  background: linear-gradient(to top, rgba(31, 41, 55, 0.95), transparent);
+  position: relative;
+  z-index: 2;
+}
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.9);
+}
+.player-container {
+  position: relative;
+  padding-top: 56.25%;
+}
+.player-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.section-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cast-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1f2937;
+}
+.cast-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.cast-scroll::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 3px;
+}
+.cast-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+
+/* Custom colors for better theme */
+.bg-primary {
+  background: #667eea;
+}
+.bg-secondary {
+  background: #764ba2;
+}
+.text-primary {
+  color: #667eea;
+}
+.text-secondary {
+  color: #764ba2;
+}
+.border-primary {
+  border-color: #667eea;
+}
+
+/* Server selector styles */
+.server-btn {
+  transition: all 0.3s ease;
+}
+.server-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+}
+
+/* Episode selector styles */
+.season-btn {
+  transition: all 0.3s ease;
+}
+.season-btn.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-color: #10b981;
+}
+.episode-btn {
+  transition: all 0.3s ease;
+}
+.episode-btn:hover {
+  background: #374151;
+}

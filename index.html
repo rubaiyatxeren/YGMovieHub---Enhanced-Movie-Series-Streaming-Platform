@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YGMovieHub - Enhanced Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body class="bg-gray-900 text-white">
+    <!-- Header -->
+    <header
+      class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-md z-50 py-3 md:py-4 px-4 md:px-6 border-b border-gray-800"
+    >
+      <div
+        class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 md:gap-0"
+      >
+        <div
+          class="flex items-center space-x-2 cursor-pointer justify-center md:justify-start"
+          onclick="location.reload()"
+        >
+          <i class="fas fa-film text-purple-500 text-xl md:text-2xl"></i>
+          <h1 class="text-xl md:text-2xl font-bold section-title">
+            YGMovieHub
+          </h1>
+        </div>
+
+        <div class="flex items-center justify-center">
+          <div class="relative w-full max-w-md">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search movies & TV shows..."
+              class="bg-gray-800 border border-gray-700 rounded-full py-2 px-4 text-white w-full focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm md:text-base"
+            />
+            <button
+              onclick="searchContent()"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white rounded-full p-2"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-28 md:pt-24 pb-16 px-4 md:px-6 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-6xl font-bold section-title mb-4">
+            Unlimited Movies & TV Shows
+          </h1>
+          <p class="text-xl text-gray-300 mb-8">
+            Stream your favorite content in high quality
+          </p>
+          <button
+            onclick="scrollToContent()"
+            class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-full py-3 px-6 font-semibold transition-all duration-300"
+          >
+            Start Watching
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-8 px-6">
+      <!-- Trending Movies -->
+      <section id="trending" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 section-title">
+          🔥 Trending Movies
+        </h2>
+        <div
+          id="trendingGrid"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+          <div class="text-center py-8 col-span-full">
+            <i class="fas fa-spinner fa-spin text-purple-500 text-2xl"></i>
+            <p class="text-gray-400 mt-2">Loading trending movies...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Movies -->
+      <section id="popular" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 section-title">⭐ Popular Movies</h2>
+        <div
+          id="popularGrid"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+          <div class="text-center py-8 col-span-full">
+            <i class="fas fa-spinner fa-spin text-purple-500 text-2xl"></i>
+            <p class="text-gray-400 mt-2">Loading popular movies...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TV Shows -->
+      <section id="tvshows" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 section-title">
+          📺 Popular TV Shows
+        </h2>
+        <div
+          id="tvShowsGrid"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+          <div class="text-center py-8 col-span-full">
+            <i class="fas fa-spinner fa-spin text-purple-500 text-2xl"></i>
+            <p class="text-gray-400 mt-2">Loading TV shows...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Movies -->
+      <section id="recent" class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 section-title">🎬 Recent Movies</h2>
+        <div
+          id="recentGrid"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+          <div class="text-center py-8 col-span-full">
+            <i class="fas fa-spinner fa-spin text-purple-500 text-2xl"></i>
+            <p class="text-gray-400 mt-2">Loading recent movies...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Results -->
+      <section id="searchResults" class="mb-12 hidden">
+        <h2 id="searchTitle" class="text-2xl font-bold mb-6 section-title">
+          Search Results
+        </h2>
+        <div
+          id="searchGrid"
+          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+        >
+          <!-- Search results will load here -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-800 py-8 px-6 border-t border-gray-700 text-center text-gray-400"
+    >
+      &copy; 2025 MovieHub. | Developed By: eRubaiyat | All rights reserved.
+    </footer>
+
+    <!-- Modal -->
+    <div id="movieModal" class="fixed inset-0 z-50 hidden">
+      <div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+
+      <div
+        class="relative z-10 max-w-4xl mx-auto my-8 bg-gray-800 rounded-lg overflow-hidden border border-purple-500/30"
+      >
+        <!-- Close Button -->
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center z-20 transition-colors"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Content -->
+        <div class="p-4 max-h-[90vh] overflow-y-auto">
+          <!-- Server Selector -->
+          <div id="serverSelector" class="mb-4 hidden">
+            <h3 class="text-lg font-bold mb-2 flex items-center">
+              <i class="fas fa-server text-purple-500 mr-2"></i>
+              Select Server
+            </h3>
+            <div id="serverButtons" class="flex flex-wrap gap-2">
+              <!-- Server buttons will be added here -->
+            </div>
+          </div>
+
+          <!-- Player -->
+          <div
+            class="mb-4 bg-black rounded-lg overflow-hidden border border-purple-500/20"
+          >
+            <div class="player-container">
+              <div id="playerContent">
+                <!-- Player loads here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Movie Details -->
+          <div id="movieDetailsContent">
+            <!-- Details load here -->
+          </div>
+
+          <!-- Additional Details -->
+          <div id="additionalDetails" class="mt-6">
+            <!-- Additional data loads here -->
+          </div>
+
+          <!-- Cast & Crew -->
+          <div id="castSection" class="mt-6">
+            <!-- Cast data loads here -->
+          </div>
+
+          <!-- Download Section -->
+          <div
+            id="downloadSection"
+            class="mt-6 p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/20 rounded-lg border border-green-500/30"
+          >
+            <!-- Download options load here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyDSjYzx1tI-201BXpQCKMa2CeBZPRNjShk",
+        authDomain: "crownlabour-20.firebaseapp.com",
+        projectId: "crownlabour-20",
+        storageBucket: "crownlabour-20.firebasestorage.app",
+        messagingSenderId: "256541513499",
+        appId: "1:256541513499:web:622d7c7816c04b7c70a5be",
+        measurementId: "G-LFL0JDPV9Q",
+      };
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
